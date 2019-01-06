@@ -6,11 +6,18 @@ import { STORY_ARCHIVE } from "./constants/actionTypes";
 import { getReadableStories } from "./selectors/story";
 import "./index.css";
 
-ReactDOM.render(
-  <App
-    //stories={store.getState().storyState}
-    stories={getReadableStories(store.getState())}
-    onArchive={id => store.dispatch({ type: STORY_ARCHIVE, id })}
-  />,
-  document.getElementById("root")
-);
+function render() {
+  ReactDOM.render(
+    <App
+      //stories={store.getState().storyState}
+      stories={getReadableStories(store.getState())}
+      onArchive={id => store.dispatch({ type: STORY_ARCHIVE, id })}
+    />,
+    document.getElementById("root")
+  );
+}
+
+store.subscribe(render);
+render();
+
+//Now the components will re-render once you archive a story, because the state in the Redux store updates and the subscription will run to render again the whole component tree. In addition, you render the component once when the application starts.

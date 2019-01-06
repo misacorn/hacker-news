@@ -1,0 +1,3 @@
+View -> Action -> Reducer(s) -> Store -> View
+
+First, you initialize everything by setting up reducer(s), actions and their optional action creators. Afterward, the (combined) reducer is used to create the Redux store. Second, you can interact with the store by dispatching actions with plain action objects or with action creators, by subscribing to the store and by getting the current state from the store.
