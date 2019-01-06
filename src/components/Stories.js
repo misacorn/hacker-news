@@ -6,19 +6,19 @@ import StoriesHeader from "./StoriesHeader";
 const COLUMNS = {
   title: {
     label: "Title",
-    width: "40%"
+    width: "25%"
   },
   author: {
     label: "Author",
-    width: "30%"
+    width: "35%"
   },
   comments: {
     label: "Comments",
-    width: "10%"
+    width: "15%"
   },
   points: {
     label: "Points",
-    width: "10%"
+    width: "15%"
   },
   archive: {
     width: "10%"
