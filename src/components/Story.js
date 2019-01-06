@@ -1,14 +1,9 @@
 import React from "react";
+import { ButtonInline } from "./Button";
 import "./Story.css";
 
 const Story = ({ story, columns, onArchive }) => {
   const { title, url, author, num_comments, points, objectID } = story;
-
-  const ButtonInline = ({ onClick, type = "button", children }) => (
-    <button type={type} className="button-inline" onClick={onClick}>
-      {children}
-    </button>
-  );
 
   return (
     <div className="story">
