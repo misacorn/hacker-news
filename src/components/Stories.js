@@ -1,7 +1,6 @@
 import React from "react";
 import "./Stories.css";
 import Story from "./Story";
-import StoriesHeader from "./StoriesHeader";
 
 const COLUMNS = {
   title: {
@@ -28,6 +27,7 @@ const COLUMNS = {
 const Stories = ({ stories, onArchive }) => (
   <div className="stories">
     <StoriesHeader columns={COLUMNS} />
+
     {(stories || []).map(story => (
       <Story
         key={story.objectID}
@@ -35,6 +35,16 @@ const Stories = ({ stories, onArchive }) => (
         columns={COLUMNS}
         onArchive={onArchive}
       />
+    ))}
+  </div>
+);
+
+const StoriesHeader = ({ columns }) => (
+  <div className="stories-header">
+    {Object.keys(columns).map(key => (
+      <span key={key} style={{ width: columns[key].width }}>
+        {columns[key].label}
+      </span>
     ))}
   </div>
 );
