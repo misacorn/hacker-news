@@ -1,4 +1,7 @@
 import React from "react";
+import {connect} from "react-redux"
+import {getReadableStories} from "../selectors/story"
+import {doArchiveStory} from "../actions/archive.js" 
 import "./Stories.css";
 import Story from "./Story";
 
@@ -49,4 +52,10 @@ const StoriesHeader = ({ columns }) => (
   </div>
 );
 
-export default Stories;
+const mapStateToProps = state => ({stories: getReadableStories(state),})
+const mapDispatchToProps = dispatch => ({onArchive: id => dispatch(doArchiveStory(id)),})
+
+//Whereas mapStateToProps() gives access to the global state, mapDispatchToProps() gives access to the dispatch method of the Redux store.
+
+export default connect(mapStateToProps, mapDispatchToProps)(Stories)
+
