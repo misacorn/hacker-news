@@ -1,9 +1,9 @@
 import React from "react";
-import {connect} from "react-redux"
-import {getReadableStories} from "../selectors/story"
-// import {doArchiveStory} from "../actions/archive.js" 
-import "./Stories.css";
+import { connect } from "react-redux";
+import { getReadableStories, getFetchError } from "../selectors/story";
+// import {doArchiveStory} from "../actions/archive.js"
 import Story from "./Story";
+import "./Stories.css";
 
 const COLUMNS = {
   title: {
@@ -27,10 +27,10 @@ const COLUMNS = {
   }
 };
 
-const Stories = ({ stories, onArchive }) => (
+const Stories = ({ stories, error }) => (
   <div className="stories">
     <StoriesHeader columns={COLUMNS} />
-
+    {error && <p className="error">Something went wrong ...</p>}
     {(stories || []).map(story => (
       <Story
         key={story.objectID}
@@ -52,10 +52,12 @@ const StoriesHeader = ({ columns }) => (
   </div>
 );
 
-const mapStateToProps = state => ({stories: getReadableStories(state),})
+const mapStateToProps = state => ({
+  stories: getReadableStories(state),
+  error: getFetchError(state)
+});
 // const mapDispatchToProps = dispatch => ({onArchive: id => dispatch(doArchiveStory(id)),})
 
 //Whereas mapStateToProps() gives access to the global state, mapDispatchToProps() gives access to the dispatch method of the Redux store.
 
-export default connect(mapStateToProps)(Stories)
-
+export default connect(mapStateToProps)(Stories);
